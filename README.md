@@ -63,8 +63,8 @@ File Updating:
 - NOTE: when the script ingest-process-output.py is running, the code will output to the console basic reporting (e.g., latest run start date/time, number of new post IDs/shortcodes, etc.)
 
 Separate cron jobs:\
-[Out of scope] Cron job to automatically run ingest-process-output.py
-[Out of scope] Cron job to automatically push updated files (js files) to production.
+- [Out of scope] Cron job to automatically run ingest-process-output.py
+- [Out of scope] Cron job to automatically push updated files (js files) to production.
 
 **SOME LEARNINGS/THOUGHTS**
 - The very first proof-of-concept was super rough and quick to code-- one website/domain that featured (and did not separate) all the posts mixed together from all the UCs and Black/Latinx clubs. Like with many things in coding, the very "simple and quick" idea of then segmenting by Black/Latinx and by UC campus necessitated code that, well, wasn't hard, but definitely was not "simple and quick" :)
