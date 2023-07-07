@@ -62,7 +62,7 @@ File Updating:
 - Replace clientKey and actorName in config.py as needed. clientKey should be the user's Apify API key. actorName should be the name of the saved task on Apify.
 - NOTE: when the script ingest-process-output.py is running, the code will output to the console basic reporting (e.g., latest run start date/time, number of new post IDs/shortcodes, etc.)
 
-Separate cron jobs:\
+Separate cron jobs:
 - [Out of scope] Cron job to automatically run ingest-process-output.py
 - [Out of scope] Cron job to automatically push updated files (js files) to production.
 
