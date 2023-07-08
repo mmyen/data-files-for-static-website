@@ -214,6 +214,18 @@ def put_into_file(file_text, file_name):
     file_obj.close()
     print(file_name+" changed")
 
+# Store an old version of file_name in file_name_old.js
+# NOTE: This method is specifically tailored so that the file to be backed up is a .js
+def backup_prev_ver(file_name):
+    old_file = open(file_name[:-3]+"_old.js",'w')
+    curr_file = open(file_name,'r')
+    curr_file_text = curr_file.read()
+
+    old_file.write(curr_file_text)
+    old_file.close()
+    curr_file.close()
+    print(file_name[:-3]+"_old.js"+" updated")
+
 def main():
 
     client = ApifyClient(ApifyAccess.clientKey)
@@ -305,6 +317,11 @@ def main():
     total_new_unique = len(shortcodes_and_users_cleaned_lat) + len(shortcodes_and_users_cleaned_black)
     print("Number of unique shortcodes scraped: ",total_new_unique)
 
+    # Store old contents of file in one-version backups
+    backup_prev_ver("contentcore_bl.js")
+    backup_prev_ver("contentcore_lat.js")
+    backup_prev_ver("contentpick_bl.js")
+    backup_prev_ver("contentpick_lat.js")
 
     # NOTE: Make sure that in all of the postContent declarations, 
     #       there is at least 1 line break between the left bracket ([) and the first shortCode.

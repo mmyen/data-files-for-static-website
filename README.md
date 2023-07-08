@@ -39,6 +39,7 @@ Data Processing (parse data; update lists):
 File Updating:
 - With the updated lists, my code then writes to and updates the js files. These files are part of our front-end and are used to actually store our data (no database, as per earlier in the document).
 - In the js files, my code only touches the vars that store data (Instagram posts); I do not touch the js code/logic, which I was instructed to keep as is.
+- My code stores backups of the last versions of each js file.
 
 **INSTALLATION**
 - The ingest-process-output.py script requires the installation of the ApifyClient package.
@@ -68,9 +69,13 @@ Separate cron jobs:
 
 **SOME LEARNINGS/THOUGHTS**
 - The very first proof-of-concept was super rough and quick to code-- one website/domain that featured (and did not separate) all the posts mixed together from all the UCs and Black/Latinx clubs. Like with many things in coding, the very "simple and quick" idea of then segmenting by Black/Latinx and by UC campus necessitated code that, well, wasn't hard, but definitely was not "simple and quick" :)
-- Cloudflare R2 is excellent for static websites, especially ones that are mainly text files like this project. No egress fees and the text files so far have been too small to register any monthly cost. A (future) limitation is that access controls are bare bones as of this writing.
+- Cloudflare R2 (AWS S3 equivalent) is excellent for static websites, especially ones that are mainly text files like this project. No egress fees and the text files so far have been too small to register any monthly cost. A (future) limitation is that access controls are bare bones (e.g. cannot set someone up for read only; a person always has read + write perms) as of this writing.
 - Apify.com overall seems pretty reliable.
 - My code overall is fairly generalized/modularized in some spots, and less so in others. Specs and requests were coming fast, so we didn't want to prematurely optimize. We can optimize as the pace of change requests slows down.
 - My internship was remote, which was pretty easy logistically since my files were minimal in number and size and my project boundaries were defined. Specific features/functionality did entail a good deal of real-time text/discussion. Timewise, about 10 hrs/week in Summer '22, and generally 10 hrs/month in Fall '22 and Spring '23.
+- Key design decisions (quick recap):
+    - No database; data must be stored in js files
+    - Minimize dependency/complexity on data source/Apify; concentrate logic within our own code/control
+    - Though the datasets we processed are small, we prioritized low CPU power over time/speed
 - [Out of scope] The consumer front-end/UI is pretty basic, but works well for users.
 - [Out of scope] Seemingly at random times and mainly with the Safari browser, Instagram doesn't return the proper code in their embed.js, and thus the embeds do not render. 
