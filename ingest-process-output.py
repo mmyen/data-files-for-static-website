@@ -281,7 +281,7 @@ def main():
 
     # Sort posts into if in Black or Latine/latinx
     #   - NOTE: The code assumes that if an username is not in one group it is in the other
-    #   - tsu: timetesamp, shortcode, username
+    #   - tsu: timestamp, shortcode, username
     tsu_black = []
     tsu_lat = []
 
@@ -291,7 +291,8 @@ def main():
             if len(i.keys()) == 3 and i['ownerUsername'] in BlUsernames.all_users[j]:
                 added = True
                 tsu_black.append((i['ownerUsername'],i['timestamp'],i['shortCode']))
-        if not added:
+        if len(i.keys()) == 3 and not added:
+            #print(i['ownerUsername'],"latine") #- print debugging
             tsu_lat.append((i['ownerUsername'],i['timestamp'],i['shortCode']))
         
     # Get rid of dupes in each set, then sort so the most recent posts' shortcodes are first
